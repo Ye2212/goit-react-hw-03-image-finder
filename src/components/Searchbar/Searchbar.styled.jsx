@@ -8,7 +8,7 @@ z-index: 1100;
 display: flex;
 justify-content: center;
 align-items: center;
-min-height: 64px;
+min-height: 130px;
 padding-right: 24px;
 padding-left: 24px;
 padding-top: 12px;
@@ -17,6 +17,7 @@ color: #fff;
 background-color: #002b6c;
 box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.3),
   0px 4px 5px 0px rgba(0, 0, 0, 0.18), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+  margin-bottom: 25px;
 }`;
 export const Form = styled.form`
 display: flex;
@@ -29,8 +30,8 @@ display: flex;
 
 export const Button = styled.button`
 display: inline-block;
-width: 48px;
-height: 48px;
+width: 35px;
+height: 35px;
 border: 0;
 // background-image: url('https://image.flaticon.com/icons/svg/149/149852.svg');
 // background-size: 40%;
@@ -58,15 +59,22 @@ outline: none;
 // border: 0;`;
 
 export const Input = styled.input`
-display: inline-block;
 width: 100%;
+height: 35px;
+padding: 0 10px 0 10px;
+padding: 0 10px 0 10px;
 font: inherit;
 font-size: 20px;
 border: none;
 outline: none;
+border-bottom-right-radius: 4px;
+border-top-right-radius: 4px;
 padding-left: 4px;
 padding-right: 4px;
 &::placeholder {
     font: inherit;
     font-size: 18px;
-  }`;
+  }
+  &:focus {
+    box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.75) inset;
+  };`;
