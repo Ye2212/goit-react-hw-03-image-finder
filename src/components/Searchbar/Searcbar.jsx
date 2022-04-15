@@ -1,7 +1,9 @@
 import propTypes from 'prop-types';
+
 import { Component } from 'react';
 
-import { Header, Form, Button, Span, Input } from './Searchbar.styled';
+import { Header, Form, Button, Input } from './Searchbar.styled';
+import { GoSearch } from 'react-icons/go';
 
 class Searchbar extends Component {
 
@@ -9,14 +11,17 @@ class Searchbar extends Component {
 
     render() {
         return (
-            <Header>
-                <Form onSubmit={this.formSubmit}>
-                    <Button>
-                        <Span>Search</Span>
+            < Header >
+                <Form onSubmit={this.formSubmit} >
+                    <Button
+                        type="submit"
+                    >
+                        <span>
+                            <GoSearch size="20" />
+                        </span>
                     </Button>
-                    <Input></Input>
-                </Form>
-            </Header >
+                    <Input></Input></Form >
+            </ Header >
         )
     }
 }
