@@ -1,7 +1,7 @@
 import { BtnLoadMore } from "./Button.styled";
-function Button() {
+function Button({ onClick }) {
     return (
-        <BtnLoadMore>Load More</BtnLoadMore>
+        <BtnLoadMore onClick={onClick}> Load More</ BtnLoadMore >
     )
 }
 export default Button;
