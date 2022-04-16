@@ -4,7 +4,7 @@ export const BtnLoadMore = styled.button`
 display: inline-flex;
 margin-top: 30px;
 margin-bottom: 30px;
-margin-left: 50%;
+margin-left: 45%;
 align-items: center;
 justify-content: center;
 padding: 8px 16px;
