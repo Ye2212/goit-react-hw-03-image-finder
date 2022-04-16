@@ -5,7 +5,7 @@ import Searchbar from "./Searchbar/Searcbar";
 import ImageGallery from './ImageGallery/ImageGallery';
 import Button from "./Button/Button";
 import { fetchAPI } from "services/api";
-// import scrollSmooth from "services/smoothScroll";
+import scrollSmooth from "services/smoothScroll";
 
 
 export default class App extends Component {
@@ -41,13 +41,13 @@ export default class App extends Component {
       this.fetchImages()
     };
 
-    // scrollSmooth();
+    scrollSmooth();
 
   }
 
   fetchImages = () => {
     const { query, page } = this.state;
-    this.setState({ images: [] })
+    // this.setState({ images: [] })
     fetchAPI(query, page).then(res => {
       this.setState(prevState => ({
         images: [...prevState.images, ...res.hits],

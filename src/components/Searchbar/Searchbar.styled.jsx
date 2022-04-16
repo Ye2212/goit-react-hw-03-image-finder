@@ -9,7 +9,7 @@ z-index: 1100;
 display: flex;
 justify-content: center;
 align-items: center;
-min-height: 130px;
+min-height: 90px;
 padding-right: 24px;
 padding-left: 24px;
 padding-top: 12px;
@@ -18,7 +18,7 @@ color: #fff;
 background-color: #24292f;
 box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.3),
   0px 4px 5px 0px rgba(0, 0, 0, 0.18), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
-  margin-bottom: 25px;
+  margin-bottom: 15px;
 }`;
 export const Form = styled.form`
 display: flex;
