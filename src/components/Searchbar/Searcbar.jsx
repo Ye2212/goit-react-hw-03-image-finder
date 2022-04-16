@@ -2,8 +2,8 @@ import propTypes from 'prop-types';
 
 import { Component } from 'react';
 
-import { Header, Form, Button, Input } from './Searchbar.styled';
-import { GoSearch } from 'react-icons/go';
+import { Header, Form, Button, SearchSvg, Input } from './Searchbar.styled';
+// import { GoSearch } from 'react-icons/go';
 
 class Searchbar extends Component {
 
@@ -17,7 +17,7 @@ class Searchbar extends Component {
                         type="submit"
                     >
                         <span>
-                            <GoSearch size="20" />
+                            <SearchSvg size="20" />
                         </span>
                     </Button>
                     <Input></Input></Form >

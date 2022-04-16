@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { GoSearch } from 'react-icons/go';
 
 export const Header = styled.header`
 top: 0;
@@ -14,7 +15,7 @@ padding-left: 24px;
 padding-top: 12px;
 padding-bottom: 12px;
 color: #fff;
-background-color: #002b6c;
+background-color: #24292f;
 box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.3),
   0px 4px 5px 0px rgba(0, 0, 0, 0.18), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
   margin-bottom: 25px;
@@ -23,7 +24,7 @@ export const Form = styled.form`
 display: flex;
   align-items: center;
   width: 100%;
-  max-width: 600px;
+  max-width: 800px;
   background-color: #fff;
   border-radius: 3px;
   overflow: hidden;`;
@@ -37,15 +38,18 @@ border: 0;
 // background-size: 40%;
 // background-repeat: no-repeat;
 // background-position: center;
-opacity: 0.3;
-background-color: #c5c5c8;
-transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+opacity: 0.6;
+// background-color: #c5c5c8;
+transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
 cursor: pointer;
 outline: none;
 &:hover {
-    // opacity: 1;
-    background-color: #6fb2ff;
+    opacity: 1;
   }`;
+export const SearchSvg = styled(GoSearch)`
+width: 22px;
+  height: 22px;
+  fill: #24292f`;
 
 // export const Span = styled.span`
 // position: absolute;

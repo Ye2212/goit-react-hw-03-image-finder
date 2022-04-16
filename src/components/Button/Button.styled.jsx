@@ -9,7 +9,7 @@ align-items: center;
 justify-content: center;
 padding: 8px 16px;
 border-radius: 4px;
-background-color: #00378a;
+background-color: #24292f;;
 text-align: center;
 display: inline-block;
 color: #fff;
@@ -29,5 +29,5 @@ transition: all 500ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover,
   &:focus {
     transform: scale(0.97);
-    background-color: #0051cb;
+    background-color: #57606a;
   }`;
