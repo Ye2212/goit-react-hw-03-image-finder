@@ -71,7 +71,7 @@ export default class App extends Component {
       <>
         <Searchbar onSubmit={this.onSearchRequest} />
         <ImageGallery images={images} />
-        <Button onClick={this.onNextSearch} />
+        {images.length > 0 && < Button onClick={this.onNextSearch} />}
 
 
         <ToastContainer />
