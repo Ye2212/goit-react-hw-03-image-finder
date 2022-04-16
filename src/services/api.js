@@ -10,7 +10,7 @@ export const fetchAPI = async (search, page) => {
       orientation: 'horizontal',
       safesearch: true,
       page: page,
-      per_page: 15,
+      per_page: 12,
     },
   };
 
