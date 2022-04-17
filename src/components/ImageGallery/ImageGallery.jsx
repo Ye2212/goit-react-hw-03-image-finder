@@ -6,10 +6,11 @@ function ImageGallery({
     modalOpen }) {
     return (
         <List>
-            {images.map(({ id, webformatURL, largeImageURL }) => (
+            {images.map(({ id, webformatURL, largeImageURL, tags }) => (
                 < ImageGalleryItem
                     key={id}
                     smallImage={webformatURL}
+                    description={tags}
                     largeImage={largeImageURL}
                     modalOpenProp={modalOpen}
                 />

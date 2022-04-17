@@ -1,12 +1,12 @@
 // import propTypes from 'prop-types';
 import { Item, Image } from './ImageGalleryItem.styled';
 
-function ImageGalleryItem({ smallImage, largeImage, modalOpenProp }) {
+function ImageGalleryItem({ smallImage, largeImage, description, modalOpenProp }) {
     return (
         <Item
             onClick={modalOpenProp}
         >
-            <Image src={smallImage} data-large={largeImage} />
+            <Image src={smallImage} alt={description} data-large={largeImage} />
         </Item>
     );
 }

@@ -18,7 +18,7 @@ color: #fff;
 background-color: #24292f;
 box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.3),
   0px 4px 5px 0px rgba(0, 0, 0, 0.18), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
-  margin-bottom: 15px;
+  margin-bottom: 24px;
 }`;
 export const Form = styled.form`
 display: flex;
