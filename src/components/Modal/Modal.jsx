@@ -4,7 +4,7 @@ import { Backdrop, ModalWindow, Img } from './Modal.styled';
 
 
 
-const modal = document.getElementById('modal-root');
+// const modal = document.getElementById('modal-root');
 
 class Modal extends Component {
   static propTypes = {};
