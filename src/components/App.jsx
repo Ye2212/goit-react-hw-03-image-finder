@@ -1,4 +1,5 @@
 import { Component } from "react";
+// import { toast } from 'react-toastify';
 import { ToastContainer } from 'react-toastify';
 import HelloText from "./HelloText/HelloText";
 import 'react-toastify/dist/ReactToastify.css';
@@ -9,6 +10,7 @@ import { fetchAPI } from "services/api";
 import scrollSmooth from "services/smoothScroll";
 // import { BallTriangle } from 'react-loader-spinner'
 import LoaderBallTriangle from "./Loader/Loader";
+import Modal from "./Modal/Modal";
 
 
 
@@ -17,8 +19,14 @@ export default class App extends Component {
   state = {
     query: '',
     images: [],
+    totalImages: 0,
     page: 1,
     loading: false,
+    error: '',
+    showModal: false,
+    currentImg: null,
+    currentImgDescr: null,
+
   }
 
 
@@ -37,33 +45,50 @@ export default class App extends Component {
     const prevPage = prevState.page;
     const nextPage = this.state.page;
 
+
     if (prevQuery !== nextQuery) {
       // обнулится массив картинок, коллекция будет рендерится исходя из запроса, 
       // если ключевое слово изменяется, коллекция обнуляется
       this.setState({ images: [] });
 
+
       // включаем лоадер
       this.setState({ loading: true });
 
+      // if (this.state.images.length === 0) {
+      //   console.log('Nothing found!');
+      //   toast.error('Nothing found!');
+      // }
+
+
+
       // обращение к серверу
       this.fetchImages()
-    };
 
-    if (nextPage > prevPage) {
-      this.fetchImages()
-    };
+
+      if (nextPage > prevPage) {
+        this.fetchImages()
+      };
+
+
+
+
+    }
 
     scrollSmooth();
 
   }
 
   fetchImages = () => {
-    const { query, page } = this.state;
+    const { query, page, } = this.state;
     fetchAPI(query, page).then(res => {
       this.setState(prevState => ({
         images: [...prevState.images, ...res.hits],
+        totalImages: res.totalHits,
       }))
     })
+      // ловим ошибку
+      .catch(error => this.setState({ error }))
       // отключаем лоадер
       .finally(() => this.setState({ loading: false }))
   }
@@ -79,17 +104,56 @@ export default class App extends Component {
     }))
   }
 
+  openModal = event => {
+    const currentImg = event.target.dataset.large;
+    const currentImgDescr = event.target.alt;
+    if (event.target.nodeName === 'IMG') {
+      this.setState(({ showModal }) => ({
+        showModal: !showModal,
+        currentImg: currentImg,
+        currentImgDescr: currentImgDescr,
+      }));
+    }
+  };
+
+
+  toggleModal = () => {
+    this.setState(({ showModal }) => ({
+      showModal: !showModal
+    }));
+  };
+
+
   render() {
-    const { images } = this.state;
+    const { images,
+      loading,
+      showModal,
+      currentImg,
+      currentImgDescr,
+    } = this.state;
+
+
     return (
       <>
         <Searchbar onSubmit={this.onSearchRequest} />
-        {images.length === 0 && !this.state.loading && <HelloText text="Hello! What are you looking for?" />}
-        <ImageGallery images={images} />
+
+        {images.length === 0 && !loading && <HelloText text="Hello! What are you looking for?" />}
+
+        < ImageGallery images={images} openModal={this.openModal} />
+
+        {loading && < LoaderBallTriangle />}
 
         {images.length > 0 && < Button onClick={this.onNextSearch} />}
 
-        {this.state.loading && < LoaderBallTriangle />}
+
+        {showModal && < Modal
+          onClose={this.toggleModal}
+          currentImg={currentImg}
+          currentImgDescr={currentImgDescr}
+        />}
+        {/* <button type="button" onClick={this.toggleModal}>openModal</button> */}
+
+
         <ToastContainer />
       </>
     );

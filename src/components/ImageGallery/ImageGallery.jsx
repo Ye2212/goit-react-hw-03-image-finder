@@ -3,7 +3,7 @@ import ImageGalleryItem from 'components/ImageGalleryItem/ImageGalleryItem';
 
 function ImageGallery({
     images,
-    modalOpen }) {
+    openModal }) {
     return (
         <List>
             {images.map(({ id, webformatURL, largeImageURL, tags }) => (
@@ -12,7 +12,7 @@ function ImageGallery({
                     smallImage={webformatURL}
                     description={tags}
                     largeImage={largeImageURL}
-                    modalOpenProp={modalOpen}
+                    openModal={openModal}
                 />
             ))}
         </List>
