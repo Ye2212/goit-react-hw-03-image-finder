@@ -1,4 +1,5 @@
 import { Component } from "react";
+import propTypes from 'prop-types';
 // import { createPortal } from 'react-dom';
 import { Backdrop, ModalWindow, Img } from './Modal.styled';
 
@@ -7,7 +8,10 @@ import { Backdrop, ModalWindow, Img } from './Modal.styled';
 // const modal = document.getElementById('modal-root');
 
 class Modal extends Component {
-  static propTypes = {};
+  static propTypes = {
+    currentImg: propTypes.string.isRequired,
+    currentImgDescr: propTypes.string.isRequired,
+  };
   componentDidMount() {
     window.addEventListener('keydown', this.handleKeyDown);
   }

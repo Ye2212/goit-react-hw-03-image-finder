@@ -85,11 +85,9 @@ export default class App extends Component {
   }
   // функция для увеличения значения страницы на 1, обработчик событя на кнопке LoadMore
   onNextSearch = () => {
-    this.setState(({ page }) => ({
-      page: page + 1,
+    this.setState(prevState => ({
+      page: prevState.page + 1
     }))
-    console.log('click on LoadMore');
-
   }
 
   openModal = event => {
@@ -132,7 +130,7 @@ export default class App extends Component {
 
         {loading && < LoaderBallTriangle />}
 
-        {images.length > 0 && < Button onNextSearch={this.onNextSearch} />}
+        {images.length > 0 && <Button onClick={this.onNextSearch} />}
 
         {showModal && < Modal
           onClose={this.toggleModal}
