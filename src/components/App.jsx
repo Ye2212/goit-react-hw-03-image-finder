@@ -1,5 +1,4 @@
 import { Component } from "react";
-// import { toast } from 'react-toastify';
 import { ToastContainer } from 'react-toastify';
 import HelloText from "./HelloText/HelloText";
 import 'react-toastify/dist/ReactToastify.css';
@@ -8,7 +7,6 @@ import ImageGallery from './ImageGallery/ImageGallery';
 import Button from "./Button/Button";
 import { fetchAPI } from "services/api";
 import scrollSmooth from "services/smoothScroll";
-// import { BallTriangle } from 'react-loader-spinner'
 import LoaderBallTriangle from "./Loader/Loader";
 import Modal from "./Modal/Modal";
 
@@ -19,7 +17,6 @@ export default class App extends Component {
   state = {
     query: '',
     images: [],
-    totalImages: 0,
     page: 1,
     loading: false,
     error: '',
@@ -50,29 +47,18 @@ export default class App extends Component {
       // обнулится массив картинок, коллекция будет рендерится исходя из запроса, 
       // если ключевое слово изменяется, коллекция обнуляется
       this.setState({ images: [] });
+      this.fetchImages();
 
 
       // включаем лоадер
       this.setState({ loading: true });
 
-      // if (this.state.images.length === 0) {
-      //   console.log('Nothing found!');
-      //   toast.error('Nothing found!');
-      // }
-
-
-
       // обращение к серверу
       this.fetchImages()
-
 
       if (nextPage > prevPage) {
         this.fetchImages()
       };
-
-
-
-
     }
 
     scrollSmooth();
@@ -81,10 +67,10 @@ export default class App extends Component {
 
   fetchImages = () => {
     const { query, page, } = this.state;
+
     fetchAPI(query, page).then(res => {
       this.setState(prevState => ({
         images: [...prevState.images, ...res.hits],
-        totalImages: res.totalHits,
       }))
     })
       // ловим ошибку
@@ -99,9 +85,11 @@ export default class App extends Component {
   }
   // функция для увеличения значения страницы на 1, обработчик событя на кнопке LoadMore
   onNextSearch = () => {
-    this.setState(prevState => ({
-      page: prevState.page + 1
+    this.setState(({ page }) => ({
+      page: page + 1,
     }))
+    console.log('click on LoadMore');
+
   }
 
   openModal = event => {
@@ -125,7 +113,8 @@ export default class App extends Component {
 
 
   render() {
-    const { images,
+    const {
+      images,
       loading,
       showModal,
       currentImg,
@@ -143,16 +132,13 @@ export default class App extends Component {
 
         {loading && < LoaderBallTriangle />}
 
-        {images.length > 0 && < Button onClick={this.onNextSearch} />}
-
+        {images.length > 0 && < Button onNextSearch={this.onNextSearch} />}
 
         {showModal && < Modal
           onClose={this.toggleModal}
           currentImg={currentImg}
           currentImgDescr={currentImgDescr}
         />}
-        {/* <button type="button" onClick={this.toggleModal}>openModal</button> */}
-
 
         <ToastContainer />
       </>

@@ -3,9 +3,7 @@ import { Item, Image } from './ImageGalleryItem.styled';
 
 function ImageGalleryItem({ smallImage, largeImage, description, openModal }) {
     return (
-        <Item
-            onClick={openModal}
-        >
+        <Item onClick={openModal}        >
             <Image
                 src={smallImage}
                 alt={description}
