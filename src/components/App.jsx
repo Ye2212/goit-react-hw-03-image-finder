@@ -55,11 +55,11 @@ export default class App extends Component {
 
       // обращение к серверу
       this.fetchImages()
-
-      if (nextPage > prevPage) {
-        this.fetchImages()
-      };
     }
+
+    if (nextPage > prevPage) {
+      this.fetchImages()
+    };
 
     scrollSmooth();
 
