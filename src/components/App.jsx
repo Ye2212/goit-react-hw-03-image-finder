@@ -3,7 +3,7 @@ import { fetchAPI } from "services/api";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import LoaderBallTriangle from "./Loader/Loader";
-import HelloText from "./HelloText/HelloText";
+import Message from "./Message/Message";
 import ImageGallery from './ImageGallery/ImageGallery';
 import Searchbar from "./Searchbar/Searcbar";
 import Button from "./Button/Button";
@@ -115,13 +115,15 @@ export default class App extends Component {
       <>
         <Searchbar onSubmit={this.onSearchRequest} />
 
-        {status === 'idle' && <HelloText text="Hello! What are you looking for?" />}
+        {status === 'idle' && <Message text="Hello! What are you looking for?" />}
 
         {status === 'resolved' && < ImageGallery images={images} openModal={this.openModal} />}
 
         {status === 'pending' && < LoaderBallTriangle />}
 
         {status === 'resolved' && < Button onClick={this.onNextSearch} />}
+
+        {status === 'rejected' && <Message text="Something went wrong!" />}
 
         {showModal && < Modal
           onClose={this.toggleModal}

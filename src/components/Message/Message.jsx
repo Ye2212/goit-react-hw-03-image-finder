@@ -1,5 +1,5 @@
 import propTypes from 'prop-types';
-import { Text } from "./HelloText.styled";
+import { Text } from "./Message.styled";
 
 function HelloText({ text }) {
   return (<Text>{text}</Text>)
