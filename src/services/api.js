@@ -15,8 +15,16 @@ export const fetchAPI = async (search, page) => {
   };
 
   const response = await axios.get(URL, options);
+  const mappedImages = response.data.hits.map(
+    ({ id, largeImageURL, webformatURL }) => ({
+      id,
+      largeImageURL,
+      webformatURL,
+    })
+  );
+
   if (response.data.total === 0) {
     return Promise.reject(new Error('Something get wrong!'));
   }
-  return response;
+  return mappedImages;
 };

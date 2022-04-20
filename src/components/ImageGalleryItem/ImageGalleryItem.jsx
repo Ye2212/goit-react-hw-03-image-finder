@@ -11,7 +11,6 @@ function ImageGalleryItem({
         <Item  >
             <Image
                 src={smallImage}
-                alt={description}
                 onClick={() => {
                     toggleModal()
                     openModalImg(largeImage)
@@ -21,7 +20,6 @@ function ImageGalleryItem({
 }
 ImageGalleryItem.propTypes = {
     smallImage: propTypes.string.isRequired,
-    description: propTypes.string.isRequired,
     largeImage: propTypes.string.isRequired,
     toggleModal: propTypes.func.isRequired,
     openModalImg: propTypes.func.isRequired

@@ -5,11 +5,10 @@ import ImageGalleryItem from 'components/ImageGalleryItem/ImageGalleryItem';
 function ImageGallery({ images, toggleModal, openModalImg }) {
     return (
         <List>
-            {images.map(({ id, webformatURL, largeImageURL, tags }) => (
+            {images.map(({ id, webformatURL, largeImageURL, }) => (
                 < ImageGalleryItem
                     key={id}
                     smallImage={webformatURL}
-                    description={tags}
                     largeImage={largeImageURL}
                     openModalImg={openModalImg}
                     toggleModal={toggleModal}

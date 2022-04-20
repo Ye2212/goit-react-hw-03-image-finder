@@ -39,7 +39,6 @@ class Modal extends Component {
         <ModalWindow>
           <Img
             src={this.props.largeImage}
-            // alt={openModalImg}
             loading="lazy" />
         </ModalWindow >
       </Backdrop >

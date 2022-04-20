@@ -45,9 +45,9 @@ export default class App extends Component {
       this.fetchImages();
     }
 
-    if (page > prevPage) {
-      this.fetchImages();
-    };
+    // if (page > prevPage) {
+    //   this.fetchImages();
+    // };
 
     scrollSmooth();
   }
@@ -59,7 +59,7 @@ export default class App extends Component {
     fetchAPI(query, page)
       .then(res => {
         this.setState(prevState => ({
-          images: [...prevState.images, ...res.data.hits],
+          images: [...prevState.images, ...res],
           status: 'resolved',
         }));
       })
