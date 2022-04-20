@@ -9,13 +9,13 @@ import { Backdrop, ModalWindow, Img } from './Modal.styled';
 
 class Modal extends Component {
   static propTypes = {
-    currentImg: propTypes.string.isRequired,
-    currentImgDescr: propTypes.string.isRequired,
+    onClose: propTypes.func.isRequired,
+    largeImage: propTypes.string.isRequired,
   };
   componentDidMount() {
     window.addEventListener('keydown', this.handleKeyDown);
   }
-  componentDidUpdate() {
+  componentWillUnmount() {
     window.removeEventListener('keydown', this.handleKeyDown);
   }
   handleClickBackdrop = event => {
@@ -30,7 +30,7 @@ class Modal extends Component {
   };
 
   render() {
-    const { currentImg, currentImgDescr } = this.props;
+
 
     // return createPortal(
     return (
@@ -38,14 +38,13 @@ class Modal extends Component {
       < Backdrop onClick={this.handleClickBackdrop} >
         <ModalWindow>
           <Img
-            src={currentImg}
-            alt={currentImgDescr}
+            src={this.props.largeImage}
+            // alt={openModalImg}
             loading="lazy" />
         </ModalWindow >
       </Backdrop >
       // , modal
     );
-
   }
 }
 export default Modal;

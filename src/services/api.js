@@ -16,7 +16,7 @@ export const fetchAPI = async (search, page) => {
 
   const response = await axios.get(URL, options);
   if (response.data.total === 0) {
-    return Promise.reject(new Error('Something wet wrong!'));
+    return Promise.reject(new Error('Something get wrong!'));
   }
   return response;
 };

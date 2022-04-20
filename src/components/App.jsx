@@ -20,6 +20,7 @@ export default class App extends Component {
     page: 1,
     error: null,
     showModal: false,
+    openModalImg: null,
     status: 'idle',
 
   };
@@ -34,16 +35,19 @@ export default class App extends Component {
     const prevPage = prevState.page;
     const page = this.state.page;
 
-    if (prevQuery !== currentQuery) {
+    if (prevQuery !== currentQuery || prevPage !== page) {
       this.setState({
-        images: [],
+        satus: 'pending'
       })
+      if (page === 1) {
+        this.setState({ images: [] })
+      }
       this.fetchImages();
     }
 
-    if (page > prevPage) {
-      this.fetchImages();
-    };
+    // if (page > prevPage) {
+    //   this.fetchImages();
+    // };
 
     scrollSmooth();
   }
@@ -76,22 +80,14 @@ export default class App extends Component {
   // функция для увеличения значения страницы на 1, обработчик событя на кнопке LoadMore
   onNextSearch = () => {
     this.setState(prevState => ({
+      ...prevState,
       page: prevState.page + 1
     }));
   }
 
-  openModal = event => {
-    const currentImg = event.target.dataset.large;
-    const currentImgDescr = event.target.alt;
-    if (event.target.nodeName === 'IMG') {
-      this.setState(({ showModal }) => ({
-        showModal: !showModal,
-        currentImg: currentImg,
-        currentImgDescr: currentImgDescr,
-      }));
-    }
+  openModalImg = image => {
+    this.setState({ openModalImg: image });
   };
-
 
   toggleModal = () => {
     this.setState(({ showModal }) => ({
@@ -102,12 +98,10 @@ export default class App extends Component {
 
   render() {
     const {
-      // loading,
       showModal,
-      currentImg,
-      currentImgDescr,
-      status,
       images,
+      status,
+      openModalImg,
     } = this.state;
 
 
@@ -117,7 +111,10 @@ export default class App extends Component {
 
         {status === 'idle' && <Message text="Hello! What are you looking for?" />}
 
-        {status === 'resolved' && < ImageGallery images={images} openModal={this.openModal} />}
+        {status === 'resolved' && < ImageGallery
+          images={images}
+          toggleModal={this.toggleModal}
+          openModalImg={this.openModalImg} />}
 
         {status === 'pending' && < LoaderBallTriangle />}
 
@@ -127,8 +124,7 @@ export default class App extends Component {
 
         {showModal && < Modal
           onClose={this.toggleModal}
-          currentImg={currentImg}
-          currentImgDescr={currentImgDescr}
+          largeImage={openModalImg}
         />}
 
         <ToastContainer />

@@ -1,13 +1,21 @@
 import propTypes from 'prop-types';
 import { Item, Image } from './ImageGalleryItem.styled';
 
-function ImageGalleryItem({ smallImage, largeImage, description, openModal }) {
+function ImageGalleryItem({
+    smallImage,
+    largeImage,
+    description,
+    openModalImg,
+    toggleModal }) {
     return (
-        <Item onClick={openModal} >
+        <Item  >
             <Image
                 src={smallImage}
                 alt={description}
-                data-large={largeImage} />
+                onClick={() => {
+                    toggleModal()
+                    openModalImg(largeImage)
+                }} />
         </ Item>
     );
 }
@@ -15,6 +23,7 @@ ImageGalleryItem.propTypes = {
     smallImage: propTypes.string.isRequired,
     description: propTypes.string.isRequired,
     largeImage: propTypes.string.isRequired,
-    onClick: propTypes.func.isRequired,
+    toggleModal: propTypes.func.isRequired,
+    openModalImg: propTypes.func.isRequired
 };
 export default ImageGalleryItem;

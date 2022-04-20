@@ -2,7 +2,7 @@ import propTypes from 'prop-types';
 import { List } from './ImageGallery.styled';
 import ImageGalleryItem from 'components/ImageGalleryItem/ImageGalleryItem';
 
-function ImageGallery({ images, openModal }) {
+function ImageGallery({ images, toggleModal, openModalImg }) {
     return (
         <List>
             {images.map(({ id, webformatURL, largeImageURL, tags }) => (
@@ -11,7 +11,8 @@ function ImageGallery({ images, openModal }) {
                     smallImage={webformatURL}
                     description={tags}
                     largeImage={largeImageURL}
-                    openModal={openModal}
+                    openModalImg={openModalImg}
+                    toggleModal={toggleModal}
                 />
             ))}
         </List>
@@ -19,12 +20,13 @@ function ImageGallery({ images, openModal }) {
 }
 ImageGallery.propTypes = {
     images: propTypes.arrayOf(
-        propTypes.shape({
+        propTypes.exact({
             id: propTypes.number.isRequired,
-            smallImage: propTypes.string.isRequired,
-            largeImage: propTypes.string.isRequired,
-            tadescriptiongs: propTypes.string.isRequired,
-        })),
-    openModal: propTypes.func.isRequired,
+            largeImageURL: propTypes.string.isRequired,
+            webformatURL: propTypes.string.isRequired,
+        })
+    ).isRequired,
+    toggleModal: propTypes.func.isRequired,
+    openModalImg: propTypes.func.isRequired,
 }
 export default ImageGallery;
