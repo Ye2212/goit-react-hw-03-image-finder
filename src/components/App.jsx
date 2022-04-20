@@ -45,9 +45,9 @@ export default class App extends Component {
       this.fetchImages();
     }
 
-    // if (page > prevPage) {
-    //   this.fetchImages();
-    // };
+    if (page > prevPage) {
+      this.fetchImages();
+    };
 
     scrollSmooth();
   }
@@ -111,7 +111,7 @@ export default class App extends Component {
 
         {status === 'idle' && <Message text="Hello! What are you looking for?" />}
 
-        {status === 'resolved' && < ImageGallery
+        {images.length > 0 && < ImageGallery
           images={images}
           toggleModal={this.toggleModal}
           openModalImg={this.openModalImg} />}
