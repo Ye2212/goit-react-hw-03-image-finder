@@ -15,5 +15,8 @@ export const fetchAPI = async (search, page) => {
   };
 
   const response = await axios.get(URL, options);
-  return response.data;
+  if (response.data.total === 0) {
+    return Promise.reject(new Error('Something wet wrong!'));
+  }
+  return response;
 };
